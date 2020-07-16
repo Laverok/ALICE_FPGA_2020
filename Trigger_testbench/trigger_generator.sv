@@ -16,7 +16,7 @@ class trigger_generator;
 
     task run();
         
-        repeat(trans_count) begin
+        repeat(trans_count+1) begin
             trans = new();
             
             trans.mt_cou = 0;
@@ -26,8 +26,8 @@ class trigger_generator;
             trans.CH_trigb = 4;
             
             driver_mbx.put(trans);
+
         end
-        
     endtask
 
 endclass

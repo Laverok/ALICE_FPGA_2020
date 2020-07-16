@@ -9,7 +9,7 @@ program trigger_test(trigger_if vif);
     
     initial begin
         env = new(vif);
-        env.gen.trans_count = 100;
+        env.gen.trans_count = 10; // how many times the generator should apply stimulus
         
         env.run();
     end    

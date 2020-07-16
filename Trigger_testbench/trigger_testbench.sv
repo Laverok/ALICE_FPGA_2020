@@ -31,6 +31,5 @@ module trigger_testbench;
         .tt(_if.tt),
         .ta(_if.ta)
     );
-
     
 endmodule
