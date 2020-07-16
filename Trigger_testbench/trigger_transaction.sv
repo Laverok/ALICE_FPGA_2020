@@ -11,10 +11,6 @@ class trigger_transaction;
     logic tcm_req;
     logic[1:0] tt, ta;
     
-    function void print();
-    //TODO
-    endfunction
-    
 endclass
 
 `endif

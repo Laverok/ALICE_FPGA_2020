@@ -5,12 +5,12 @@
 module trigger_testbench;
 
     reg clk;
-    trigger_if tif(clk);
+    trigger_if vif(clk);
     
     initial begin 
         trigger_test t;
-        t = new;
-        t.e.vif = tif;
+        t = new(vif);
+        t.env.vif = vif;
         t.run();
         
         clk <= 0;
@@ -22,16 +22,16 @@ module trigger_testbench;
     end
     
     trigger tr1(
-        .clk320(tif.clk),
-        .mt_cou(tif.mt_cou),
-        .CH_trigt(tif.CH_trigt),
-        .CH_triga(tif.CH_triga),
-        .CH_trigb(tif.CH_trigb),
-        .CH_TIME_T(tif.CH_TIME_T),
-        .CH_ampl0(tif.CH_ampl0),
-        .tcm_req(tif.tcm_req),
-        .tt(tif.tt),
-        .ta(tif.ta)
+        .clk320(vif.clk),
+        .mt_cou(vif.mt_cou),
+        .CH_trigt(vif.CH_trigt),
+        .CH_triga(vif.CH_triga),
+        .CH_trigb(vif.CH_trigb),
+        //.CH_TIME_T(vif.CH_TIME_T),
+        //.CH_ampl0(vif.CH_ampl0),
+        .tcm_req(vif.tcm_req),
+        .tt(vif.tt),
+        .ta(vif.ta)
     );
 
     

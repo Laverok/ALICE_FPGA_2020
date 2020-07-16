@@ -7,22 +7,21 @@ class trigger_env;
     trigger_driver d;
     //trigger_monitor m;
     //trigger_scoreboard s;
-    mailbox env_mbx;
+    mailbox driver_mbx;
     virtual trigger_if vif;
     
-    function new();
-        d = new;
+    function new(virtual trigger_if vif);
+        this.vif = vif;
+        driver_mbx = new();
+        d = new(vif, driver_mbx);
         //m = new;
         //s = new;
-        env_mbx = new();
     endfunction
     
     virtual task run();
         d.vif = vif;
         //m.vif = vif;
         //s.vif = vif;
-        //m.monitor_mbx = env_mbx;
-        //s.scb_mbx = env_mbx;
         
         fork
             d.run();

@@ -5,19 +5,21 @@
 `define TRIGGER_TEST
 
 class trigger_test;
-    trigger_env e;
+    trigger_env env;
     mailbox driver_mbx;
+    virtual trigger_if vif;
     
-    function new();
+    function new(virtual trigger_if vif);
+        this.vif = vif;
         driver_mbx = new();
-        e = new();
+        env = new(vif);
     endfunction
     
     virtual task run();
-        e.d.driver_mbx = driver_mbx;
+        env.d.driver_mbx = driver_mbx;
         
         fork
-            e.run();
+            env.run();
         join_none
         
         apply_stimulus();
@@ -25,7 +27,7 @@ class trigger_test;
     
     virtual task apply_stimulus();
         trigger_transaction trans;
-        trans = new;
+        trans = new();
         
         $display ("[%0t] Applying stimulus", $time);
         trans.mt_cou = 0;
