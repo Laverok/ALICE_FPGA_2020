@@ -1,10 +1,12 @@
 `include "trigger_driver.sv"
+`include "trigger_generator.sv"
 
 `ifndef TRIGGER_ENV
 `define TRIGGER_ENV
 
 class trigger_env;
-    trigger_driver d;
+    trigger_generator gen;
+    trigger_driver drv;
     //trigger_monitor m;
     //trigger_scoreboard s;
     mailbox driver_mbx;
@@ -13,18 +15,20 @@ class trigger_env;
     function new(virtual trigger_if vif);
         this.vif = vif;
         driver_mbx = new();
-        d = new(vif, driver_mbx);
+        gen = new(driver_mbx);
+        drv = new(vif, driver_mbx);
         //m = new;
         //s = new;
     endfunction
     
     virtual task run();
-        d.vif = vif;
+        drv.vif = vif;
         //m.vif = vif;
         //s.vif = vif;
         
         fork
-            d.run();
+            gen.run();
+            drv.run();
             //s.run();
             //m.run();
         join_any

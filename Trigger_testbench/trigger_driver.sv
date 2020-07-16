@@ -4,12 +4,16 @@
 `define TRIGGER_DRIVER
 
 class trigger_driver;
+
+    int no_transactions;
+    
     virtual trigger_if vif;
     mailbox driver_mbx;
     
     function new(virtual trigger_if vif, mailbox driver_mbx);
         this.vif = vif;
         this.driver_mbx = driver_mbx;
+        no_transactions = 0;
     endfunction
     
     task run();
@@ -17,7 +21,7 @@ class trigger_driver;
             trigger_transaction trans;
             driver_mbx.get(trans);
             
-            //$display("DRIVER TRANSFER");
+            $display("DRIVER TRANSFER [%0d]", no_transactions);
             
             @ (posedge vif.clk);
 
@@ -28,7 +32,7 @@ class trigger_driver;
             vif.CH_ampl0 <= trans.CH_ampl0;
             
             @ (posedge vif.clk);
-            
+            no_transactions++;
         end
         
     endtask
