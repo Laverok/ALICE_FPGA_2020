@@ -24,7 +24,9 @@ class trigger_driver;
             $display("DRIVER TRANSFER [%0d]", no_transactions);
             
             @ (posedge vif.clk);
-
+            
+            vif.mt_cou <= trans.mt_cou;
+            vif.tcm_req <= trans.tcm_req;
             vif.CH_trigt <= trans.CH_trigt;
             vif.CH_triga <= trans.CH_triga;
             vif.CH_trigb <= trans.CH_trigb;
