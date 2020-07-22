@@ -1,3 +1,5 @@
+// Interface for the trigger
+
 `ifndef TRIGGER_IF
 `define TRIGGER_IF
 

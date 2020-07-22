@@ -1,3 +1,5 @@
+// Encapsulates the data passed between testbench components
+
 `include "trigger_if.sv"
 
 `ifndef TRIGGER_TRANS

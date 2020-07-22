@@ -1,16 +1,18 @@
+// Responsible for driving DUT ports with signals coming from the generator
+
 `include "trigger_transaction.sv"
 
 `ifndef TRIGGER_DRIVER
 `define TRIGGER_DRIVER
 
 class trigger_driver;
-
-    int no_transactions;
+    
+    int no_transactions; // indicates how many times the transactions have been done
     
     virtual trigger_if vif;
     mailbox driver_mbx;
     
-    function new(virtual trigger_if vif, mailbox driver_mbx);
+    function new(virtual trigger_if vif, mailbox driver_mbx); // constructor
         this.vif = vif;
         this.driver_mbx = driver_mbx;
         no_transactions = 0;

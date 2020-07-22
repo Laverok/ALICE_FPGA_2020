@@ -1,3 +1,5 @@
+// Responsible for generating the signals and sending them to the driver
+
 `include "trigger_transaction.sv"
 
 `ifndef TRIGGER_GEN

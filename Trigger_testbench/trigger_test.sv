@@ -1,3 +1,5 @@
+// Program responsible for running the test
+
 `include "trigger_driver.sv"
 `include "trigger_env.sv"
 
